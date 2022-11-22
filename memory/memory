@@ -48,6 +48,7 @@ END {
 	}
 
 	pct=0
+	if (used == 0) {exit 0}
 	if (total > 0) {
 		pct=used/total*100
 	}
@@ -62,12 +63,21 @@ END {
 	printf("%.f%%\n", pct)
 
 	# color
-	if (pct > 90) {
-		print("#FF0000")
-	} else if (pct > 80) {
-		print("#FFAE00")
-	} else if (pct > 70) {
-		print("#FFF600")
+
+	if (type == "swap") {
+		if (pct > 5) {
+			print("#FF0000")
+		} else {
+			print("#FFAE00")
+		}
+	} else {
+		if (pct > 90) {
+			print("#FF0000")
+		} else if (pct > 80) {
+			print("#FFAE00")
+		} else if (pct > 70) {
+			print("#FFF600")
+		}
 	}
 }
 ' /proc/meminfo
